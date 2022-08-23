@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceaser Cipher</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/cs.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="header">Ceaser Cipher</h2>
+        <div class="row">
+            <div class="col">
+                <div class="centeredd">
+                    <h2 class="sideheader">Encryption</h2><br>
+                    <table align="center">
+                        <form>
+                            <div class="input-group flex-nowrap">
+                                <tr>
+                                    <td><span class="input-group-text">Plain Text</span></td>
+                                    <td><input id="plaintext" type="text" class="form-control"
+                                            placeholder="Enter Plain Text here"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="input-group-text">Shift</span>
+                                    </td>
+                                    <td><input id="shift" type="number" class="form-control"
+                                            placeholder="Integer between 0-25"></td>
+                                </tr>
+                            </div>
+                        </form>
+                    </table><br>
+
+                    <button type="button" onclick="encrypt()"
+                        class="btn btn-outline-info btn-lg">Encrypt</button><br><br>
+                    <p class="lowerHeader" id="pToCiphertext"></p>
+                </div>
+            </div>
+
+            
+            <div class="col">
+                <div class="centeredd">
+                    <h2 class="sideheader">Decryption</h2><br>
+                    <table align="center">
+                        <form>
+                            <div class="input-group flex-nowrap">
+                                <tr>
+                                    <td><span class="input-group-text">Cipher Text</span></td>
+                                    <td><input id="ciphertext" type="text" class="form-control"
+                                            placeholder="Enter Cipher Text here"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="input-group-text">Shift</span>
+                                    </td>
+                                    <td><input id="shift" type="number" class="form-control"
+                                            placeholder="Integer between 0-25"></td>
+                                </tr>
+                            </div>
+                        </form>
+                    </table><br>
+
+                    <button type="button" onclick="decrypt()"
+                        class="btn btn-outline-light btn-lg">Decrypt</button><br><br>
+                    <p class="lowerHeader" id="cToPlaintext"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function encrypt() {
+        var text = document.getElementById("plaintext").value;
+        text = text.toUpperCase();
+        var s = parseInt(document.getElementById("shift").value);
+        let result = ""
+        for (let i = 0; i < text.length; i++) {
+            let char = text[i];
+            if (char.toUpperCase(text[i])) {
+                let ch = String.fromCharCode((char.charCodeAt(0) + s - 65) % 26 + 65);
+                result += ch;
+            }
+            else {
+                let ch = String.fromCharCode((char.charCodeAt(0) + s - 97) % 26 + 97);
+                result += ch;
+            }
+        }
+        console.log(result);
+        result = "Cipher Text: " + result;
+        document.getElementById("pToCiphertext").innerHTML = result;
+    }
+
+    function decrypt() {
+        var text = document.getElementById("ciphertext").value;
+        var s = parseInt(document.getElementById("shift").value);
+        s = 26 - s;
+        let result = ""
+        for (let i = 0; i < text.length; i++) {
+            let char = text[i];
+            if (char.toUpperCase(text[i])) {
+                let ch = String.fromCharCode((char.charCodeAt(0) + s - 65) % 26 + 65);
+                result += ch;
+            }
+            else {
+                let ch = String.fromCharCode((char.charCodeAt(0) + s - 97) % 26 + 97);
+                result += ch;
+            }
+        }
+        console.log(result);
+        result = "Plain Text: " + result;
+        document.getElementById("cToPlaintext").innerHTML = result;
+    }
+</script>
+
+</html>
