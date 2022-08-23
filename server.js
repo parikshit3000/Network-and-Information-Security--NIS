@@ -12,9 +12,5 @@ app.listen(3000, function(req, res) {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/landingPage.html");
-});
-
-app.get("/ceasercipher", (req, res) => {
     res.sendFile(__dirname + "/ceaserCipher.html");
 });
