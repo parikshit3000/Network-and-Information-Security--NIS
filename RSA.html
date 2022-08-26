@@ -46,7 +46,7 @@
                         </form>
                     </table><br>
 
-                    <button type="button" onclick="RSA()"
+                    <button type="button" onclick="RSAencryption()"
                         class="btn btn-outline-info btn-lg">Encrypt</button><br><br>
                     <p class="lowerHeader" id="res"></p>
                 </div>
@@ -58,7 +58,7 @@
     </div>
 </body>
 <script>
-    function RSA() {
+    function RSAencryption() {
         let result = ""
         var gcd, p, q, no, n, t, e, i, x;
         gcd = function (a, b) { return (!b) ? a : gcd(b, a % b); };
